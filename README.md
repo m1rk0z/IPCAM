@@ -6,6 +6,14 @@ Progetto GitHub: [m1rk0z/IPCAM](https://github.com/m1rk0z/IPCAM)
 
 ---
 
+## 📱 Screenshots & Interfaccia Utente
+
+| Interfaccia Principale (Cyber Teal) | Server Attivo & HUD Diagnostico | Connessione Rapida via QR Code |
+| :---: | :---: | :---: |
+| ![Main UI](docs/screenshots/app_main_ui.png) | ![Active Stream HUD](docs/screenshots/app_live_active.png) | ![QR Code Dialog](docs/screenshots/app_qr_code_dialog.png) |
+
+---
+
 ## 🌟 Caratteristiche Principali (Key Features)
 
 - **📡 Streaming RTSP a Bassa Latenza**:
@@ -110,20 +118,20 @@ L'APK compilato di release si trova in:
 
 ## 🔄 Come Aggiornare il Repository GitHub
 
-Per aggiornare il repository GitHub (`m1rk0z/IPCAM`) con il codice corrente e il file README:
+Per aggiornare il repository GitHub (`m1rk0z/IPCAM`) con il codice corrente, i nuovi screenshot ed il file README:
 
 ```powershell
 # 1. Verifica lo stato dei file
 git status
 
-# 2. Aggiungi tutte le modifiche
+# 2. Aggiungi tutte le modifiche e i nuovi screenshot
 git add .
 
 # 3. Crea un commit per la nuova versione
-git commit -m "Update IPCAM Pro: Cyber Teal UI, Hot-swapping & Signed Release"
+git commit -m "Add app screenshots to README and update documentation"
 
 # 4. Invia le modifiche su GitHub
-git push -u origin main
+git push origin main
 ```
 
 ---
