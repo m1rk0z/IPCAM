@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Ghiera esterna dell'obiettivo -->
+    <path
+        android:pathData="M30,58 a20,20 0 1 0 40,0 a20,20 0 1 0 -40,0"
+        android:fillColor="#00000000"
+        android:strokeColor="#06B6D4"
+        android:strokeWidth="5" />
+
+    <!-- Lente interna -->
+    <path android:pathData="M38.5,58 a11.5,11.5 0 1 0 23,0 a11.5,11.5 0 1 0 -23,0">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="radial"
+                android:centerX="46"
+                android:centerY="53"
+                android:gradientRadius="18">
+                <item android:offset="0" android:color="#FF22D3EE" />
+                <item android:offset="1" android:color="#FF0E7490" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Riflesso sulla lente -->
+    <path
+        android:pathData="M42.3,53 a3.2,3.2 0 1 0 6.4,0 a3.2,3.2 0 1 0 -6.4,0"
+        android:fillColor="#E6CFFAFE" />
+
+    <!-- Onde di trasmissione (arancio) -->
+    <path
+        android:pathData="M75.4,48.8 A27,27 0 0 0 59.2,32.6"
+        android:fillColor="#00000000"
+        android:strokeColor="#F97316"
+        android:strokeWidth="4.5"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M81.9,46.4 A34,34 0 0 0 61.6,26.1"
+        android:fillColor="#00000000"
+        android:strokeColor="#F97316"
+        android:strokeWidth="4.5"
+        android:strokeLineCap="round" />
+</vector>

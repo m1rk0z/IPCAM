@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@color/surface"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="QR Code RTSP"
+        android:textColor="@color/primary"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Scansiona il codice per connetterti alla telecamera"
+        android:textColor="@color/text_muted"
+        android:textSize="12sp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        app:cardCornerRadius="16dp"
+        app:cardBackgroundColor="#FFFFFF"
+        android:layout_marginBottom="16dp"
+        app:cardElevation="4dp">
+
+        <ImageView
+            android:id="@+id/ivQrCode"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:scaleType="fitCenter"
+            android:contentDescription="Codice QR RTSP" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tvDialogRtspUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="rtsp://192.168.1.100:8554/live"
+        android:textColor="@color/text_primary"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="24dp"
+        android:background="@color/background"
+        android:padding="10dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDialogCopy"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:text="COPIA"
+            android:textColor="@color/primary"
+            app:strokeColor="@color/primary"
+            app:icon="@android:drawable/ic_menu_save"
+            app:iconTint="@color/primary" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDialogShare"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="CONDIVIDI"
+            app:backgroundTint="@color/primary"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:icon="@android:drawable/ic_menu_share"
+            app:iconTint="@color/white" />
+
+    </LinearLayout>
+
+</LinearLayout>

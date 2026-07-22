@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
+    android:background="@color/background"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+
+        <!-- Header Title -->
+        <TextView
+            android:id="@+id/tvAppTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IPCAM Pro"
+            android:textColor="@color/primary"
+            android:textSize="26sp"
+            android:fontFamily="sans-serif-black"
+            android:textStyle="bold"
+            android:letterSpacing="0.05"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Server Active Indicator -->
+        <LinearLayout
+            android:id="@+id/llServerStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_status_pill"
+            android:paddingHorizontal="14dp"
+            android:paddingVertical="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/tvAppTitle">
+
+            <View
+                android:id="@+id/vStatusIndicator"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginEnd="8dp"
+                android:background="@android:drawable/presence_offline"
+                android:backgroundTint="@color/error" />
+
+            <TextView
+                android:id="@+id/tvStatusText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OFFLINE"
+                android:textColor="@color/text_primary"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05" />
+        </LinearLayout>
+
+        <!-- RTSP Link Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardRtspLink"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/surface"
+            app:strokeColor="@color/border"
+            app:strokeWidth="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvAppTitle">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/tvLabelRtsp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RTSP STREAM LINK (SELECT IP)"
+                    android:textColor="@color/text_muted"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.08"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- IP Selector Dropdown -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilIpSelector"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:boxStrokeColor="@color/primary"
+                    app:hintTextColor="@color/primary"
+                    app:boxBackgroundColor="@color/surface"
+                    app:endIconTint="@color/primary"
+                    app:startIconDrawable="@android:drawable/ic_menu_rotate"
+                    app:startIconTint="@color/primary"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvLabelRtsp">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/actvIpSelector"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:padding="16dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tvRtspUrl"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="rtsp://127.0.0.1:8554/live"
+                    android:textColor="@color/accent_light"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tilIpSelector" />
+
+                <!-- Action buttons row -->
+                <LinearLayout
+                    android:id="@+id/llRtspActions"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal"
+                    android:gravity="end"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvRtspUrl">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnCopyUrl"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="COPY"
+                        android:textColor="@color/primary"
+                        android:textStyle="bold"
+                        app:icon="@android:drawable/ic_menu_save"
+                        app:iconTint="@color/primary" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnShareUrl"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="SHARE"
+                        android:textColor="@color/primary"
+                        android:textStyle="bold"
+                        app:icon="@android:drawable/ic_menu_share"
+                        app:iconTint="@color/primary" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnQrCode"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="QR CODE"
+                        android:textColor="@color/primary"
+                        android:textStyle="bold"
+                        app:icon="@android:drawable/ic_menu_view"
+                        app:iconTint="@color/primary" />
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Camera Preview Container -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardPreview"
+            android:layout_width="0dp"
+            android:layout_height="320dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="6dp"
+            app:strokeColor="@color/border"
+            app:strokeWidth="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardRtspLink">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#000000">
+
+                <TextureView
+                    android:id="@+id/cameraPreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <!-- Transparent Overlay for Diagnostics -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|start"
+                    android:layout_margin="16dp"
+                    android:background="@drawable/bg_diag_pill"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/tvDiagResolution"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Res: --"
+                        android:textColor="@color/text_primary"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/tvDiagBitrate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bitrate: -- Mbps"
+                        android:textColor="@color/text_primary"
+                        android:textSize="11sp"
+                        android:layout_marginTop="2dp" />
+
+                    <TextView
+                        android:id="@+id/tvDiagFps"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fps: --"
+                        android:textColor="@color/text_primary"
+                        android:textSize="11sp"
+                        android:layout_marginTop="2dp" />
+
+                    <TextView
+                        android:id="@+id/tvDiagClients"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Clients: 0"
+                        android:textColor="@color/primary"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="2dp" />
+                </LinearLayout>
+
+                <!-- Replay Buffer Stats Overlay -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|start"
+                    android:layout_margin="16dp"
+                    android:background="@drawable/bg_diag_pill"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/tvDiagBufferDuration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Buffer: 0s / 300s"
+                        android:textColor="@color/text_primary"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/tvDiagDiskUsage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Disk Size: 0 MB"
+                        android:textColor="@color/text_primary"
+                        android:textSize="11sp"
+                        android:layout_marginTop="2dp" />
+
+                    <TextView
+                        android:id="@+id/tvDiagSegmentCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Segments: 0"
+                        android:textColor="@color/text_primary"
+                        android:textSize="11sp"
+                        android:layout_marginTop="2dp" />
+                </LinearLayout>
+
+            </FrameLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Quick Controls Row -->
+        <LinearLayout
+            android:id="@+id/llControls"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:baselineAligned="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardPreview">
+
+            <!-- Left Column: Camera and Live Buttons -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <!-- Toggle Camera Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnToggleCamera"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="CAMERA"
+                    android:textColor="@color/text_primary"
+                    app:icon="@android:drawable/ic_menu_camera"
+                    app:iconTint="@color/text_primary"
+                    app:strokeColor="@color/border"
+                    app:cornerRadius="12dp" />
+
+                <!-- Stream Start/Stop Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnStartStop"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="START LIVE"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/success"
+                    app:cornerRadius="28dp"
+                    app:elevation="4dp" />
+
+            </LinearLayout>
+
+            <!-- Right Column: Audio Button, taking matching height -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnToggleAudio"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="114dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="AUDIO ON"
+                android:textColor="@color/text_primary"
+                app:icon="@android:drawable/ic_lock_silent_mode_off"
+                app:iconTint="@color/text_primary"
+                app:strokeColor="@color/border"
+                app:cornerRadius="12dp" />
+
+        </LinearLayout>
+
+        <!-- Configuration Panel Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardSettings"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/surface"
+            app:strokeColor="@color/border"
+            app:strokeWidth="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/llControls"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="STREAM CONFIGURATION"
+                    android:textColor="@color/text_muted"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.08" />
+
+                <!-- Port Configuration Input -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="RTSP Server Port"
+                    app:hintTextColor="@color/text_muted"
+                    app:boxStrokeColor="@color/primary"
+                    app:boxBackgroundColor="@color/input_bg"
+                    app:cornerRadius="@dimen/cardview_compat_inset_shadow">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPort"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:text="8554"
+                        android:textColor="@color/text_primary" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Resolution Selection Dropdown -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Target Video Resolution"
+                    android:textColor="@color/text_muted"
+                    android:textSize="12sp" />
+
+                <Spinner
+                    android:id="@+id/spResolution"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_spinner"
+                    android:popupBackground="@color/surface"
+                    android:spinnerMode="dropdown" />
+
+                <!-- FPS Selection Dropdown -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Target Video FPS"
+                    android:textColor="@color/text_muted"
+                    android:textSize="12sp" />
+
+                <Spinner
+                    android:id="@+id/spFps"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_spinner"
+                    android:popupBackground="@color/surface"
+                    android:spinnerMode="dropdown" />
+
+                <!-- Bitrate Selection Dropdown -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Target Video Bitrate"
+                    android:textColor="@color/text_muted"
+                    android:textSize="12sp" />
+
+                <Spinner
+                    android:id="@+id/spBitrate"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_spinner"
+                    android:popupBackground="@color/surface"
+                    android:spinnerMode="dropdown" />
+
+                <!-- Rotation Selection Dropdown -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Stream Rotation (Live)"
+                    android:textColor="@color/text_muted"
+                    android:textSize="12sp" />
+
+                <Spinner
+                    android:id="@+id/spRotation"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_spinner"
+                    android:popupBackground="@color/surface"
+                    android:spinnerMode="dropdown" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Adaptive fallbacks will engage automatically (4K -> 1080p -> 720p) if resources or heat levels exceed device capabilities."
+                    android:textColor="@color/text_muted"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

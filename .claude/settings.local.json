@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la \"C:\\\\Users\\\\mcominardi\\\\AndroidStudioProjects\")",
+      "Bash(mkdir -p ~/.android/avd/IPCAM_Test.avd)",
+      "Read(//c/Users/mcominardi/.android/avd/**)",
+      "Bash(rmdir ~/.android/avd/IPCAM_Test.avd 2>/dev/null *)",
+      "Bash('C:\\\\Users\\\\mcominardi\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\emulator\\\\emulator.exe' -avd Medium_Tablet -no-audio -no-boot-anim -gpu swiftshader_indirect -no-snapshot)",
+      "Bash(echo \"Emulator PID: $!\")",
+      "Bash(disown)",
+      "Bash('C:\\\\Users\\\\mcominardi\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\platform-tools\\\\adb.exe' wait-for-device *)",
+      "Bash('C:\\\\Users\\\\mcominardi\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\platform-tools\\\\adb.exe' shell *)",
+      "Bash('C:\\\\Users\\\\mcominardi\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\platform-tools\\\\adb.exe' install *)",
+      "Bash('C:\\\\Users\\\\mcominardi\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\platform-tools\\\\adb.exe' uninstall *)",
+      "Bash('C:\\\\Users\\\\mcominardi\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\platform-tools\\\\adb.exe' logcat *)",
+      "Bash(export MSYS_NO_PATHCONV=1)",
+      "Bash('C:\\\\Users\\\\mcominardi\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\platform-tools\\\\adb.exe' pull *)",
+      "Read(//tmp/**)",
+      "Bash(\"C:\\\\Users\\\\mcominardi\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\platform-tools\\\\adb.exe\" devices *)",
+      "Bash('C:\\\\Users\\\\mcominardi\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\platform-tools\\\\adb.exe' devices *)"
+    ]
+  }
+}
